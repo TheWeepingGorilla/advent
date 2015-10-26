@@ -1,0 +1,14 @@
+[
+	{
+		"name": "John Smith",
+		"city": "Phoenix"
+	},
+	{
+		"name": "John Doe",
+		"city": "New York"
+	},
+	{
+		"name": "Jane Doe",
+		"city": "San Francisco"
+	}
+]

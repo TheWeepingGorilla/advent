@@ -1,0 +1,14 @@
+<div class="container">
+  <h2>View2</h2>
+  Name:
+  <br>
+  <input type="text" data-ng-model="name"></input>
+  <br>
+  <ul>
+    <li data-ng-repeat = "customer in customers | filter : name | orderBy : 'city' ">
+      {{ customer.name }} - {{ customer.city }}
+    </li>
+  </ul>
+  <br>
+  <a href="#/View1">View1</a>
+</div>
