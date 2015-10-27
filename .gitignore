@@ -1,7 +1,7 @@
 # Libs & Source#
-./node_modules
+./node_modules/*
 ./client/lib
-./jasmine-standalone-2.3.4/lib
+./jasmine-standalone-2.3.4/lib/*
 ./jasmine-standalone-2.3.4/src
 ./jasmine-standalone-2.3.4/MIT.LICENSE
 
