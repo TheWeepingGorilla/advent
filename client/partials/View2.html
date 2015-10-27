@@ -5,8 +5,8 @@
   <input type="text" data-ng-model="name"></input>
   <br>
   <ul>
-    <li data-ng-repeat = "customer in customers | filter : name | orderBy : 'city' ">
-      {{ customer.name }} - {{ customer.city }}
+    <li data-ng-repeat = "customer in customers | filter : name | orderBy : 'allowedDirections' ">
+      {{ customer.name }} - {{ customer.description }} - {{ customer.location }} - {{ customer.allowedDirections }}
     </li>
   </ul>
   <br>
