@@ -1,12 +1,12 @@
 <div class="container">
-  <h2>View1</h2>
+  <h2>{{ space.name }}</h2>
   Name:
   <br>
   <input type="text" data-ng-model="filter.name"></input>
   <br>
   <ul>
-    <li data-ng-repeat = "customer in customers | filter : name ">
-      {{ customer.name }} - {{ customer.description }} - {{ customer.location }} -
+    <li data-ng-repeat = "space in spaces | filter : filter.name ">
+      {{ space.description }} - {{ space.location }} - {{ space.allowedDirections }}
     </li>
   </ul>
   <br>

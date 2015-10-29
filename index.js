@@ -1,3 +1,4 @@
+// app setup
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
@@ -17,11 +18,41 @@ MongoClient.connect(url, function(err, db) {
 	}
 });
 
+// static html service
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/client/index.html');
 });
 app.use(express.static(__dirname + '/client'));
 
+var spaces = [
+	{
+		"name": "Beach Near Cave Entrance",
+		"description": "You are standing on a desolate stretch of beach. To the east, there is a rocky cliff face with a cave entrance.",
+		"location": "0",
+		"allowedDirections":["east:1"]
+	},
+	{
+		"name": "Cave Opening",
+		"description": "You are standing inside a large cave with a sandy floor. The roar of the ocean's waves is distant and echoing. To the north, there is a narrow winding passage.",
+		"location":"1",
+		"allowedDirections":["north:2", "west:0"]
+	},
+	{
+		"name": "Winding Passage North-South",
+		"description":"You are in a narrow winding north-south passage.",
+		"location":"2",
+		"allowedDirections":["north:3","south:1"]
+	}
+];
+
+
+// get server for location info
+app.get('/:location', function(req, res) {
+var q = spaces[req.params.location];
+  res.json(q);
+});
+
+// start up server
 var server = app.listen(3000, function () {
  	var host = server.address().address;
   var port = server.address().port;

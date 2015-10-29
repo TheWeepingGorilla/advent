@@ -1,11 +1,11 @@
 demoApp.factory('simpleFactory', function($http) {
 	var factory = {};
 
-	factory.getCustomers = function () {
+	factory.getSpaces = function () {
 		return $http.get('./data/spaces.json');
 	};
 
-	factory.postCustomer = function (customer) {
+	factory.postSpace = function (customer) {
 		// code to post here
 		console.log("Got Here");
 	};
