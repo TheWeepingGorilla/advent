@@ -1,4 +1,4 @@
-var demoApp = angular.module('demoApp', ['ngRoute'])
+var demoApp = angular.module('demoApp', ['ngRoute', 'customFilter'])
 	.controller('SimpleController', function($scope, $route, $routeParams, $location) {
 		$scope.$route = $route;
 		$scope.$location = $location;
@@ -6,11 +6,11 @@ var demoApp = angular.module('demoApp', ['ngRoute'])
 	})
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
-		.when('/View1', {
+		.when('/1', {
 			templateUrl: './partials/View1.html',
 			controller: 'SimpleController',
 		})
-		.when('/View2', {
+		.when('/2', {
 			templateUrl: './partials/View2.html',
 			controller: 'SimpleController'
 		})

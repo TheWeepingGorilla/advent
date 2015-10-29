@@ -5,8 +5,8 @@
   <input type="text" data-ng-model="filter.name"></input>
   <br>
   <ul>
-    <li data-ng-repeat = "space in spaces | filter : filter.name ">
-      {{ space.description }} - {{ space.location }} - {{ space.allowedDirections }}
+    <li data-ng-repeat = "(key, value) in spaces | custom : filter.name ">
+      {{ key }} - {{ value }}
     </li>
   </ul>
   <br>
@@ -20,3 +20,9 @@
   <br>
   <a href="#/View2">View2</a>
 </div>
+
+
+
+<!-- <div ng-repeat="(key, value) in myObj | custom:search">
+  {{ key }} : {{ value }}
+</div> -->

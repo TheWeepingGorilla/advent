@@ -1,8 +1,8 @@
 demoApp.factory('simpleFactory', function($http) {
 	var factory = {};
 
-	factory.getSpaces = function () {
-		return $http.get('./data/spaces.json');
+	factory.getSpaces = function (path) {
+		return $http.get('/' + path);
 	};
 
 	factory.postSpace = function (customer) {

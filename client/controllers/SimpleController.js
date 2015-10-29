@@ -1,11 +1,13 @@
 var controllers = {};
-controllers.SimpleController = function($scope, simpleFactory) {
+controllers.SimpleController = function($scope, $route, simpleFactory) {
 	$scope.spaces = [];
+
+	var originalPath = $route.current.$$route.originalPath.slice(1);
 
 	init();
 
 	function init() {
-		simpleFactory.getSpaces().success(function(data, status){
+		simpleFactory.getSpaces(originalPath).success(function(data, status){
 			$scope.spaces = data;
 		});
 	};
