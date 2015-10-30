@@ -1,7 +1,7 @@
 demoApp.factory('simpleFactory', function($http) {
 	var factory = {};
 
-	factory.getSpaces = function (path) {
+	factory.getSpace = function (path) {
 		return $http.get('/' + path);
 	};
 

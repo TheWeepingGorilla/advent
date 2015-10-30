@@ -13,4 +13,20 @@ angular.module('customFilter',[])
     });
     return result;
   }
+})
+.filter('directionName', function() {
+	return function(input) {
+		if (input[0] === 1) {
+			return "East";
+		}
+		else if (input[0] === -1) {
+			return "West";
+		}
+		else if (input[1] === 1) {
+			return "North";
+		}
+		else if (input[1] === -1) {
+			return "South";
+		}
+	}
 });

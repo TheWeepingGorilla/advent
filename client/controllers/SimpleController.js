@@ -1,25 +1,15 @@
 var controllers = {};
 controllers.SimpleController = function($scope, $route, simpleFactory) {
-	$scope.spaces = [];
+	$scope.space = [];
 
 	var originalPath = $route.current.$$route.originalPath.slice(1);
 
 	init();
 
 	function init() {
-		simpleFactory.getSpaces(originalPath).success(function(data, status){
-			$scope.spaces = data;
+		simpleFactory.getSpace(originalPath).success(function(data, status){
+			$scope.space = data;
 		});
 	};
-
-	// $scope.addCustomer = function() {
-	// 	$scope.customers.push(
-	// 		{
-	// 			name: $scope.newCustomer.name,
-	// 			city: $scope.newCustomer.city
-	// 		}
-	// 	);
-	// 	console.log($scope.customers);
-	// };
 };
 demoApp.controller(controllers);

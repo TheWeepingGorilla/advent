@@ -28,14 +28,14 @@ var spaces = [
 	{
 		"name": "Beach Near Cave Entrance",
 		"description": "You are standing on a desolate stretch of beach. To the east, there is a rocky cliff face with a cave entrance.",
-		"location": "0",
-		"allowedDirections":["east:1"]
+		"location": [0,0,0],
+		"allowedDirections": [ [1,0,0] ]
 	},
 	{
 		"name": "Cave Opening",
 		"description": "You are standing inside a large cave with a sandy floor. The roar of the ocean's waves is distant and echoing. To the north, there is a narrow winding passage.",
-		"location":"1",
-		"allowedDirections":["north:2", "west:0"]
+		"location": [1,0,0],
+		"allowedDirections":[ [-1,0,0], [0,1,0] ]
 	},
 	{
 		"name": "Winding Passage North-South",
