@@ -4,6 +4,6 @@
 
 
   <div data-ng-repeat="direction in space.allowedDirections">
-  	{{ direction | directionName }}
+  	<a href="/{{ originalPath + direction }}">{{ direction | directionName }}</a>
 	</div>
 

@@ -35,13 +35,13 @@ var spaces = [
 		"name": "Cave Opening",
 		"description": "You are standing inside a large cave with a sandy floor. The roar of the ocean's waves is distant and echoing. To the north, there is a narrow winding passage.",
 		"location": [1,0,0],
-		"allowedDirections":[ [-1,0,0], [0,1,0] ]
+		"allowedDirections":[ [-1,0,0],[0,1,0] ]
 	},
 	{
 		"name": "Winding Passage North-South",
 		"description":"You are in a narrow winding north-south passage.",
-		"location":"2",
-		"allowedDirections":["north:3","south:1"]
+		"location": [1,1,0],
+		"allowedDirections":[ [0,1,0],[0,-1,0] ]
 	}
 ];
 

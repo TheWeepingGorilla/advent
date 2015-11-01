@@ -3,7 +3,6 @@ controllers.SimpleController = function($scope, $route, simpleFactory) {
 	$scope.space = [];
 
 	var originalPath = $route.current.$$route.originalPath.slice(1);
-
 	init();
 
 	function init() {
