@@ -1,6 +1,7 @@
 # Libs & Source#
 ./node_modules/express
 ./node_modules/mongodb
+./node_modules/mongoose
 ./client/lib
 ./jasmine-standalone-2.3.4/lib/*
 ./jasmine-standalone-2.3.4/src

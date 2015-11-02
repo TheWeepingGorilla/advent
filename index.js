@@ -2,21 +2,59 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-
-// mongo setup
-var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
-var ObjectId = require('mongodb').ObjectID;
-var url = 'mongodb://localhost:27017/advent';
-MongoClient.connect(url, function(err, db) {
-  if (err) {
-  	console.log('Unable to connect to the mongoDB server. Error:', err);
-  } else {
-	  assert.equal(null, err);
-	  console.log("Connected correctly to server.");
-	  db.close();
+
+var mongoose = require('mongoose');
+var db = mongoose.connection;
+var dbURL = 'mongodb://localhost:27017/advent';
+db.on('error', console.error);
+mongoose.connect(dbURL, function(err, res){
+	if (err) {
+		console.log('ERROR connecting to ' + dbURL + '. ' + err);
+	}
+	else {
+		console.log('SUCCESS connecting to ' + dbURL);
 	}
 });
+
+var Space = mongoose.model('Space',{name:String, description:String, location: Object, allowedDirections: Array});
+
+function createSpace(name2Save, description2Save, location2Save, allowedDirections2Save) {
+	var space2Save = new Space({
+	  name: name2Save,
+	  description: description2Save,
+	  location: location2Save,
+	  allowedDirections: allowedDirections2Save
+	});
+
+	space2Save.save(function(err, space2Save) {
+	  if (err) return console.error(err);
+	  console.log(space2Save);
+	});
+};
+
+// createSpace("Beach Near Cave Entrance","You are standing on a desolate stretch of beach. To the east, there is a rocky cliff face with a cave entrance.",{"x":0, "y":0},[{"x":1, "y":0}]);
+
+// createSpace("Cave Opening","You are standing inside a large cave with a sandy floor. The roar of the ocean's waves is echoing all around. To the north, there is a narrow winding passage.",{"x":1, "y":0},[{"x":-1, "y":0},{"x":0,"y":1}]);
+
+// createSpace("Winding Passage North-South","You are in a narrow winding north-south passage.",{"x":1, "y":1},[{"x":0, "y":1},{"x":0,"y":-1}]);
+
+function getSpace(xLoc, yLoc) {
+	Space.findOne({"location.x":xLoc, "location.y":yLoc}, function(err, retObj) {
+		if (err) {
+			console.log(err);
+			return;
+		}
+		else if (retObj) {
+			console.log("Returned Object: " + retObj);
+			return retObj;
+		}
+		else {
+			console.log('No object found! - xLoc ' + xLoc + ' yLoc ' + yLoc);
+			return;
+		}
+	});
+};
 
 // static html service
 app.get('/', function (req, res) {
@@ -24,32 +62,21 @@ app.get('/', function (req, res) {
 });
 app.use(express.static(__dirname + '/client'));
 
-var spaces = [
-	{
-		"name": "Beach Near Cave Entrance",
-		"description": "You are standing on a desolate stretch of beach. To the east, there is a rocky cliff face with a cave entrance.",
-		"location": [0,0,0],
-		"allowedDirections": [ [1,0,0] ]
-	},
-	{
-		"name": "Cave Opening",
-		"description": "You are standing inside a large cave with a sandy floor. The roar of the ocean's waves is distant and echoing. To the north, there is a narrow winding passage.",
-		"location": [1,0,0],
-		"allowedDirections":[ [-1,0,0],[0,1,0] ]
-	},
-	{
-		"name": "Winding Passage North-South",
-		"description":"You are in a narrow winding north-south passage.",
-		"location": [1,1,0],
-		"allowedDirections":[ [0,1,0],[0,-1,0] ]
-	}
-];
-
-
 // get server for location info
-app.get('/:location', function(req, res) {
-var q = spaces[req.params.location];
-  res.json(q);
+app.get('/advent', function (req, res) {
+	var xLoc = parseInt(req.query.xLoc);
+	var yLoc = parseInt(req.query.yLoc);
+	Space.findOne({"location.x":xLoc, "location.y":yLoc}, function(err, retObj) {
+		if (err) {
+			res.send(err);
+		}
+		else if (retObj) {
+			res.json(retObj);
+		}
+		else {
+			res.send("No Object Found - xLoc: " + xLoc + " yLoc: " + yLoc);
+		}
+	});
 });
 
 // start up server

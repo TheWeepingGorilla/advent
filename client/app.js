@@ -3,10 +3,11 @@ var demoApp = angular.module('demoApp', ['ngRoute', 'customFilter'])
 		$scope.$route = $route;
 		$scope.$location = $location;
 		$scope.$routeParams = $routeParams;
+		$scope.param = $routeParams.param;
 	})
 	.config(function($routeProvider, $locationProvider) {
 		$routeProvider
-		.when('/1', {
+		.when('/advent', {
 			templateUrl: './partials/View1.html',
 			controller: 'SimpleController',
 		})
@@ -14,5 +15,5 @@ var demoApp = angular.module('demoApp', ['ngRoute', 'customFilter'])
 			templateUrl: './partials/View2.html',
 			controller: 'SimpleController'
 		})
-		.otherwise({ redirectTo: '/View1' });
+		.otherwise({ redirectTo: '/entry' });
 	});

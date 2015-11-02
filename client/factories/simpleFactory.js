@@ -2,7 +2,7 @@ demoApp.factory('simpleFactory', function($http) {
 	var factory = {};
 
 	factory.getSpace = function (path) {
-		return $http.get('/' + path);
+		return $http.get(path);
 	};
 
 	factory.postSpace = function (customer) {

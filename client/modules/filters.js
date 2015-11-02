@@ -15,17 +15,17 @@ angular.module('customFilter',[])
   }
 })
 .filter('directionName', function() {
-	return function(input) {
-		if (input[0] === 1) {
+	return function(direction) {
+		if (direction.x === 1) {
 			return "East";
 		}
-		else if (input[0] === -1) {
+		else if (direction.x === -1) {
 			return "West";
 		}
-		else if (input[1] === 1) {
+		else if (direction.y === 1) {
 			return "North";
 		}
-		else if (input[1] === -1) {
+		else if (direction.y === -1) {
 			return "South";
 		}
 	}

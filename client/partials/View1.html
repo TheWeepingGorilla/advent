@@ -1,9 +1,9 @@
 <div class="container">
-  <h2>{{ space.name }}</h2>
-  <p>{{ space.description }}</p>
+	<h2>{{ space.name }}</h2>
+	<p>{{ space.description }}</p>
 
+	<div data-ng-repeat="direction in space.allowedDirections">
 
-  <div data-ng-repeat="direction in space.allowedDirections">
-  	<a href="/{{ originalPath + direction }}">{{ direction | directionName }}</a>
+		{{ direction | directionName }}<br>
 	</div>
-
+</div>
