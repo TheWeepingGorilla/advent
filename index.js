@@ -33,28 +33,12 @@ function createSpace(name2Save, description2Save, location2Save, allowedDirectio
 	});
 };
 
-// createSpace("Beach Near Cave Entrance","You are standing on a desolate stretch of beach. To the east, there is a rocky cliff face with a cave entrance.",{"x":0, "y":0},[{"x":1, "y":0}]);
+// createSpace("Beach Near Cave Entrance","You are standing on a desolate stretch of beach. To the east, there is a rocky cliff face with a cave entrance.",{"x":0, "y":0},[{"x":1, "y":0, "label":"East"}]);
 
-// createSpace("Cave Opening","You are standing inside a large cave with a sandy floor. The roar of the ocean's waves is echoing all around. To the north, there is a narrow winding passage.",{"x":1, "y":0},[{"x":-1, "y":0},{"x":0,"y":1}]);
+// createSpace("Cave Opening","You are standing inside a large cave with a sandy floor. The roar of the ocean's waves is echoing all around. To the north, there is a narrow winding passage.",{"x":1, "y":0},[{"x":0, "y":0, "label":"West"},{"x":1,"y":1, "label":"North"}]);
 
-// createSpace("Winding Passage North-South","You are in a narrow winding north-south passage.",{"x":1, "y":1},[{"x":0, "y":1},{"x":0,"y":-1}]);
+// createSpace("Winding Passage North-South","You are in a narrow winding north-south passage.",{"x":1, "y":1},[{"x":1, "y":2, "label":"North"},{"x":1, "y":0, "label":"South"}]);
 
-function getSpace(xLoc, yLoc) {
-	Space.findOne({"location.x":xLoc, "location.y":yLoc}, function(err, retObj) {
-		if (err) {
-			console.log(err);
-			return;
-		}
-		else if (retObj) {
-			console.log("Returned Object: " + retObj);
-			return retObj;
-		}
-		else {
-			console.log('No object found! - xLoc ' + xLoc + ' yLoc ' + yLoc);
-			return;
-		}
-	});
-};
 
 // static html service
 app.get('/', function (req, res) {

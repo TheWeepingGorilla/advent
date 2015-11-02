@@ -3,7 +3,6 @@
 	<p>{{ space.description }}</p>
 
 	<div data-ng-repeat="direction in space.allowedDirections">
-
-		{{ direction | directionName }}<br>
+		<a href="/#/advent?xLoc={{ direction.x }}&yLoc={{ direction.y }}">{{ direction.label }}</a><br>
 	</div>
 </div>
