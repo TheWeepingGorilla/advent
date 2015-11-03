@@ -1,0 +1,25 @@
+.nav, .pagination, .carousel, .panel-title a {
+	cursor: pointer;
+}
+
+.navbar {
+	margin-bottom: 0px;
+}
+
+.navbar-default, .active {
+	background-color: #CAC1E3;
+}
+
+#home-icon {
+	width:25px;
+	height:25px;
+}
+
+#view2 {
+	font-family: sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	width: 100%;
+	min-height: 1000px;
+	background-position: center center;
+}

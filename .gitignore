@@ -3,6 +3,8 @@
 ./node_modules/mongodb
 ./node_modules/mongoose
 ./client/lib
+./client/images/*
+./client/css/bootstrap*
 ./jasmine-standalone-2.3.4/lib/*
 ./jasmine-standalone-2.3.4/src
 ./jasmine-standalone-2.3.4/MIT.LICENSE

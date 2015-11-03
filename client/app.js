@@ -1,4 +1,4 @@
-var demoApp = angular.module('demoApp', ['ngRoute', 'customFilter'])
+var demoApp = angular.module('demoApp', ['ngRoute', 'customFilter', 'ui.bootstrap'])
 	.controller('SimpleController', function($scope, $route, $routeParams, $location) {
 		$scope.$route = $route;
 		$scope.$location = $location;
@@ -11,9 +11,9 @@ var demoApp = angular.module('demoApp', ['ngRoute', 'customFilter'])
 			templateUrl: './partials/View1.html',
 			controller: 'SimpleController',
 		})
-		.when('/2', {
+		.when('/home', {
 			templateUrl: './partials/View2.html',
 			controller: 'SimpleController'
 		})
-		.otherwise({ redirectTo: '/entry' });
+		.otherwise({ redirectTo: '/home' });
 	});
