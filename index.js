@@ -39,28 +39,49 @@ function createSpace(name2Save, description2Save, location2Save, allowedDirectio
 
 // createSpace("Winding Passage North-South","You are in a narrow winding north-south passage.",{"x":1, "y":1},[{"x":1, "y":2, "label":"North"},{"x":1, "y":0, "label":"South"}]);
 
-
 // static html service
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/client/index.html');
 });
 app.use(express.static(__dirname + '/client'));
 
+var currentLocation;
 // get server for location info
 app.get('/advent', function (req, res) {
-	var xLoc = parseInt(req.query.xLoc);
-	var yLoc = parseInt(req.query.yLoc);
-	Space.findOne({"location.x":xLoc, "location.y":yLoc}, function(err, retObj) {
-		if (err) {
-			res.send(err);
-		}
-		else if (retObj) {
-			res.json(retObj);
-		}
-		else {
-			res.send("No Object Found - xLoc: " + xLoc + " yLoc: " + yLoc);
-		}
-	});
+	if (!currentLocation) {
+		Space.findOne({"location.x":0, "location.y":0}, function(err, retObj) {
+			if (err) {
+				res.send(err);
+			}
+			else if (retObj) {
+				currentLocation = retObj;
+				res.json(retObj);
+			}
+			else {
+				res.send("No Object Found - xLoc: " + xLoc + " yLoc: " + yLoc);
+			}
+		});
+	}
+	else {
+		// check query params against currentLocation.allowedDirections
+		var xLoc = parseInt(req.query.xLoc);
+		var yLoc = parseInt(req.query.yLoc);
+
+		// if allowed query space, otherwise return current location (+ flash message?)
+
+		Space.findOne({"location.x":xLoc, "location.y":yLoc}, function(err, retObj) {
+			if (err) {
+				res.send(err);
+			}
+			else if (retObj) {
+				currentLocation = retObj;
+				res.json(retObj);
+			}
+			else {
+				res.send("No Object Found - xLoc: " + xLoc + " yLoc: " + yLoc);
+			}
+		});
+	}
 });
 
 // start up server
