@@ -63,24 +63,32 @@ app.get('/advent', function (req, res) {
 		});
 	}
 	else {
-		// check query params against currentLocation.allowedDirections
 		var xLoc = parseInt(req.query.xLoc);
 		var yLoc = parseInt(req.query.yLoc);
-
-		// if allowed query space, otherwise return current location (+ flash message?)
-
-		Space.findOne({"location.x":xLoc, "location.y":yLoc}, function(err, retObj) {
-			if (err) {
-				res.send(err);
+		var current = currentLocation.allowedDirections;
+		var allowed = false;
+		for (var i=0; i<current.length; i++) {
+			if ( (current[i].x === xLoc) && (current[i].y === yLoc) ) {
+				allowed = true;
 			}
-			else if (retObj) {
-				currentLocation = retObj;
-				res.json(retObj);
-			}
-			else {
-				res.send("No Object Found - xLoc: " + xLoc + " yLoc: " + yLoc);
-			}
-		});
+		}
+		if (allowed) {
+			Space.findOne({"location.x":xLoc, "location.y":yLoc}, function(err, retObj) {
+				if (err) {
+					res.send(err);
+				}
+				else if (retObj) {
+					currentLocation = retObj;
+					res.json(retObj);
+				}
+				else {
+					res.send("No Object Found - xLoc: " + xLoc + " yLoc: " + yLoc);
+				}
+			});
+		}
+		else {
+			res.json(currentLocation);
+		}
 	}
 });
 
