@@ -33,20 +33,14 @@ function createSpace(name2Save, description2Save, location2Save, allowedDirectio
 	});
 };
 
-// createSpace("Beach Near Cave Entrance","You are standing on a desolate stretch of beach. To the east, there is a rocky cliff face with a cave entrance.",{"x":0, "y":0},[{"x":1, "y":0, "label":"East"}]);
-
-// createSpace("Cave Opening","You are standing inside a large cave with a sandy floor. The roar of the ocean's waves is echoing all around. To the north, there is a narrow winding passage.",{"x":1, "y":0},[{"x":0, "y":0, "label":"West"},{"x":1,"y":1, "label":"North"}]);
-
-// createSpace("Winding Passage North-South","You are in a narrow winding north-south passage.",{"x":1, "y":1},[{"x":1, "y":2, "label":"North"},{"x":1, "y":0, "label":"South"}]);
-
 // static html service
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/client/index.html');
 });
 app.use(express.static(__dirname + '/client'));
 
-var currentLocation;
 // get server for location info
+var currentLocation;
 app.get('/advent', function (req, res) {
 	if (!currentLocation) {
 		Space.findOne({"location.x":0, "location.y":0}, function(err, retObj) {
