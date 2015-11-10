@@ -2,7 +2,6 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var assert = require('assert');
 
 var mongoose = require('mongoose');
 var db = mongoose.connection;
@@ -17,29 +16,29 @@ mongoose.connect(dbURL, function(err, res){
 	}
 });
 
+// Advent models and functions
 var Space = mongoose.model('Space',{name:String, description:String, location: Object, allowedDirections: Array});
-
 function createSpace(name2Save, description2Save, location2Save, allowedDirections2Save) {
 	var space2Save = new Space({
-	  name: name2Save,
-	  description: description2Save,
-	  location: location2Save,
-	  allowedDirections: allowedDirections2Save
+		name: name2Save,
+		description: description2Save,
+		location: location2Save,
+		allowedDirections: allowedDirections2Save
 	});
 
 	space2Save.save(function(err, space2Save) {
-	  if (err) return console.error(err);
-	  console.log(space2Save);
+		if (err) return console.error(err);
+		console.log(space2Save);
 	});
 };
 
-// static html service
+// static file service
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/client/index.html');
+	res.sendFile(__dirname + '/client/index.html');
 });
 app.use(express.static(__dirname + '/client'));
 
-// get server for location info
+// get service for location info
 var currentLocation;
 app.get('/advent', function (req, res) {
 	if (!currentLocation) {
@@ -88,9 +87,7 @@ app.get('/advent', function (req, res) {
 
 // start up server
 var server = app.listen(3000, function () {
- 	var host = server.address().address;
-  var port = server.address().port;
-  console.log('Example app listening at http://%s:%s', host, port);
+	var host = server.address().address;
+	var port = server.address().port;
+	console.log('Example app listening at http://%s:%s', host, port);
 });
-
-
