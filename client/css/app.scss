@@ -1,0 +1,59 @@
+@font-face {
+  font-family: GoudyBookletter;
+  src: url(../fonts/GoudyBookletter1911.ttf);
+}
+
+@font-face {
+	font-family: RalewayBold;
+	src: url(../fonts/Raleway-Bold.ttf);
+}
+
+$navbar-color: #CAC1E3;
+
+body {
+	background: url(../images/Background-1.jpg) repeat 0 0;
+	background-position: center;
+	background-attachment: fixed;
+	overflow: auto;
+}
+
+h2 {
+    text-shadow: 1px 1px 1px #ccc;
+}
+
+.nav, .pagination, .carousel, .panel-title a {
+	cursor: pointer;
+}
+
+.navbar {
+	left: 5%;
+	width: 90%;
+	margin-bottom: 0px;
+}
+
+.navbar-default, .active {
+	background-color: $navbar-color;
+}
+
+.navbar-custom {
+	border-color: $navbar-color;
+	border-radius: 0px;
+}
+
+#home-icon {
+	width:20px;
+	height:20px;
+}
+
+.view {
+	font-family: GoudyBookletter, serif;
+	font-size: 24px;
+	font-weight: bold;
+	width: 90%;
+	height: 100%;
+	background: url(../images/subtle_white_mini_waves_50opacity.png) repeat 0 0;
+}
+
+h2 {
+	font-family: RalewayBold, sans-serif;
+}

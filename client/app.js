@@ -15,5 +15,9 @@ var demoApp = angular.module('demoApp', ['ngRoute', 'customFilter', 'ui.bootstra
 			templateUrl: './partials/View2.html',
 			controller: 'SimpleController'
 		})
+		.when('/about', {
+			templateUrl: './partials/aboutView.html',
+			controller: 'SimpleController'
+		})
 		.otherwise({ redirectTo: '/home' });
 	});
