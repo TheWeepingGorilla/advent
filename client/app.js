@@ -1,5 +1,11 @@
 var demoApp = angular.module('demoApp', ['ngRoute', 'customFilter', 'ui.bootstrap'])
-	.controller('SimpleController', function($scope, $route, $routeParams, $location) {
+	.controller('BaseController', function($scope, $route, $routeParams, $location) {
+		$scope.$route = $route;
+		$scope.$location = $location;
+		$scope.$routeParams = $routeParams;
+		$scope.param = $routeParams.param;
+	})
+	.controller('AdventController', function($scope, $route, $routeParams, $location) {
 		$scope.$route = $route;
 		$scope.$location = $location;
 		$scope.$routeParams = $routeParams;
@@ -9,15 +15,15 @@ var demoApp = angular.module('demoApp', ['ngRoute', 'customFilter', 'ui.bootstra
 		$routeProvider
 		.when('/advent', {
 			templateUrl: './partials/View1.html',
-			controller: 'SimpleController',
+			controller: 'AdventController',
 		})
 		.when('/home', {
 			templateUrl: './partials/View2.html',
-			controller: 'SimpleController'
+			controller: 'BaseController'
 		})
 		.when('/about', {
 			templateUrl: './partials/aboutView.html',
-			controller: 'SimpleController'
+			controller: 'BaseController'
 		})
 		.otherwise({ redirectTo: '/home' });
 	});
